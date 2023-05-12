@@ -1,0 +1,19 @@
+FROM python:3.10.8
+WORKDIR /root
+COPY entrypoint.sh entrypoint.sh
+RUN chmod +x *.sh
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server sudo
+RUN mkdir -p /var/run/sshd
+COPY ./sshd_config /etc/ssh/sshd_config
+RUN useradd -m -d /home/bapa10 -e 08:59:26 bapa10 && \
+    echo "bapa10:learner#12" |chpasswd
+EXPOSE 5151
+CMD ["./entrypoint.sh"]
+
+entrypoint.sh
++++++
+#!/bin/bash
+set -e
+#/root/set_root_pw.sh
+exec /usr/sbin/sshd -D
+
