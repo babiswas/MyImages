@@ -7,7 +7,7 @@ RUN mkdir -p /var/run/sshd
 COPY ./sshd_config /etc/ssh/sshd_config
 RUN useradd -m -d /home/bapa10 -e 08:59:26 bapa10 && \
     echo "bapa10:learner#12" |chpasswd
-EXPOSE 5151
+EXPOSE XXXXX
 CMD ["./entrypoint.sh"]
 
 entrypoint.sh
@@ -23,7 +23,6 @@ sshd_config
 set -e
 #/root/set_root_pw.sh
 exec /usr/sbin/sshd -D
-[eng@ip-10-18-12-177 myapp9]$ cat sshd_config
 #       $OpenBSD: sshd_config,v 1.103 2018/04/09 20:41:22 tj Exp $
 # This is the sshd server system-wide configuration file.  See
 # sshd_config(5) for more information.
